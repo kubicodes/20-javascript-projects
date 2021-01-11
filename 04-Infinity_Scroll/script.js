@@ -1,4 +1,4 @@
-const accessKey = 'okj46LFJoAVuaTy7wSg0oCBzSzK1lIp5eyqlbXAQcs4';
+const accessKey = 'FILL IN YOUR OWN ACCES KEY FROM UNSPLASH API';
 const count = 30;
 const apiUrl = `https://api.unsplash.com/photos/random?client_id=${accessKey}&count=${count}`;
 
@@ -57,7 +57,6 @@ async function getPhotosFromApi() {
   }
 }
 
-// Check to see if scrolling near bottom of page, Load More Photos
 window.addEventListener('scroll', () => {
   if (
     window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 &&
@@ -68,5 +67,5 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// On Load
+//Page load
 getPhotosFromApi();
