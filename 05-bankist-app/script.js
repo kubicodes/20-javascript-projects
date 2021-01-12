@@ -31,3 +31,22 @@ document.addEventListener('keydown', event => {
     closeOpenAccountModal();
   }
 });
+
+//Cookie Banner
+function createCookieBanner() {
+  const cookieBanner = document.createElement('div');
+  cookieBanner.classList.add('cookie-message');
+  cookieBanner.innerHTML =
+    'We are using Cookies to improve your experience on our website.<button class="btn btn--close-cookie">Got it</button>';
+
+  return cookieBanner;
+}
+
+const header = document.querySelector('header');
+const cookieBanner = createCookieBanner();
+header.append(cookieBanner);
+
+const cookieCloseButton = document.querySelector('.btn--close-cookie');
+cookieCloseButton.addEventListener('click', () => {
+  cookieBanner.remove();
+});
