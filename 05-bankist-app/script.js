@@ -1,3 +1,4 @@
+//Open Account Modal
 const openAccountModal = document.getElementById('open-account-modal');
 const overlay = document.querySelector('.overlay');
 const openAccountButtons = document.querySelectorAll('.btn--show-modal');
