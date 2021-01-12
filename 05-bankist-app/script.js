@@ -50,3 +50,11 @@ const cookieCloseButton = document.querySelector('.btn--close-cookie');
 cookieCloseButton.addEventListener('click', () => {
   cookieBanner.remove();
 });
+
+//Smooth Scrolling - Learn More Button and Navbar
+const scrollToButton = document.querySelector('.btn--scroll-to');
+const sectionOne = document.getElementById('section--1');
+
+scrollToButton.addEventListener('click', () => {
+  sectionOne.scrollIntoView({ behavior: 'smooth' });
+});
