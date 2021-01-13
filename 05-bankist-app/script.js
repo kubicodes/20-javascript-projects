@@ -44,12 +44,16 @@ function createCookieBanner() {
 
 const header = document.querySelector('header');
 const cookieBanner = createCookieBanner();
-header.append(cookieBanner);
 
-const cookieCloseButton = document.querySelector('.btn--close-cookie');
-cookieCloseButton.addEventListener('click', () => {
-  cookieBanner.remove();
-});
+if (!localStorage.getItem('cookieBannerAccepted')) {
+  header.append(cookieBanner);
+
+  const cookieCloseButton = document.querySelector('.btn--close-cookie');
+  cookieCloseButton.addEventListener('click', () => {
+    localStorage.setItem('cookieBannerAccepted', 'true');
+    cookieBanner.remove();
+  });
+}
 
 //Smooth Scrolling - Learn More Button and Navbar
 const scrollToButton = document.querySelector('.btn--scroll-to');
