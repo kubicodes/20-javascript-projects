@@ -58,3 +58,15 @@ const sectionOne = document.getElementById('section--1');
 scrollToButton.addEventListener('click', () => {
   sectionOne.scrollIntoView({ behavior: 'smooth' });
 });
+
+const navLinks = document.querySelector('.nav__links');
+navLinks.addEventListener('click', event => {
+  event.preventDefault();
+
+  if (event.target.classList.contains('nav__link')) {
+    const clickedItem = event.target.getAttribute('href');
+    const sectionOfClickedItem = document.querySelector(clickedItem);
+
+    sectionOfClickedItem.scrollIntoView({ behavior: 'smooth' });
+  }
+});
