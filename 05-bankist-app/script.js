@@ -102,3 +102,25 @@ tabContainer.addEventListener('click', event => {
   );
   contentOfClickedButton.classList.add('operations__content--active');
 });
+
+//Navbar fade out links on hover
+const nav = document.querySelector('nav');
+const logo = document.querySelector('.nav__logo');
+const links = document.querySelectorAll('.nav__item');
+
+function fadeOutNavLinks(event) {
+  const hoveredLink = event.target.closest('.nav__link');
+
+  if (hoveredLink) {
+    logo.style.opacity = this;
+
+    links.forEach(link => {
+      if (link.querySelector('a') !== hoveredLink) {
+        link.style.opacity = this;
+      }
+    });
+  }
+}
+
+nav.addEventListener('mouseover', fadeOutNavLinks.bind(0.5));
+nav.addEventListener('mouseout', fadeOutNavLinks.bind(1));
