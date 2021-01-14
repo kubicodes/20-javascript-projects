@@ -69,9 +69,11 @@ navLinks.addEventListener('click', event => {
 
   if (event.target.classList.contains('nav__link')) {
     const clickedItem = event.target.getAttribute('href');
-    const sectionOfClickedItem = document.querySelector(clickedItem);
 
-    sectionOfClickedItem.scrollIntoView({ behavior: 'smooth' });
+    if (clickedItem !== '#') {
+      const sectionOfClickedItem = document.querySelector(clickedItem);
+      sectionOfClickedItem.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 });
 
