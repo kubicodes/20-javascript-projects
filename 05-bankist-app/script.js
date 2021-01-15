@@ -35,7 +35,7 @@ document.addEventListener('keydown', event => {
 //Cookie Banner
 function createCookieBanner() {
   const cookieBanner = document.createElement('div');
-  cookieBanner.classList.add('cookie-message');
+  cookieBanner.classList.add('cookie-message', 'sticky');
   cookieBanner.innerHTML =
     'We are using Cookies to improve your experience on our website.<button class="btn btn--close-cookie">Got it</button>';
 
@@ -124,3 +124,20 @@ function fadeOutNavLinks(event) {
 
 nav.addEventListener('mouseover', fadeOutNavLinks.bind(0.5));
 nav.addEventListener('mouseout', fadeOutNavLinks.bind(1));
+
+//Sticky navigation
+function stickyNavigation(entries) {
+  const entry = entries[0];
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+}
+const navHeight = nav.getBoundingClientRect().height;
+
+const navbarObserver = new IntersectionObserver(stickyNavigation, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+navbarObserver.observe(header);
