@@ -163,3 +163,32 @@ allSections.forEach(section => {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
+//Lazyload images of section oen
+function lazyLoadSectionImages(entries, observer) {
+  const entry = entries[0];
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', () => {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+}
+
+const sectionOneImageObserver = new IntersectionObserver(
+  lazyLoadSectionImages,
+  {
+    root: null,
+    threshold: 0,
+    rootMargin: '200px',
+  }
+);
+const sectionOneImages = document.querySelectorAll('#section--1 img');
+
+sectionOneImages.forEach(image => {
+  sectionOneImageObserver.observe(image);
+});
