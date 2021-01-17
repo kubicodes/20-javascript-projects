@@ -192,3 +192,86 @@ const sectionOneImages = document.querySelectorAll('#section--1 img');
 sectionOneImages.forEach(image => {
   sectionOneImageObserver.observe(image);
 });
+
+//Teastimonials Slider
+function slider() {
+  const slides = document.querySelectorAll('.slide');
+  const buttonLeft = document.querySelector('.slider__btn--left');
+  const buttonRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
+
+  let currentSlide = 0;
+  const numberOfSlides = slides.length;
+
+  function createDots() {
+    slides.forEach((_, index) => {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${index}"></button>`
+      );
+    });
+  }
+
+  function activateDot(slide) {
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
+
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  }
+
+  function goToSlide(slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  }
+
+  function nextSlide() {
+    if (currentSlide === numberOfSlides - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  }
+
+  function prevSlide() {
+    if (currentSlide === 0) {
+      currentSlide = numberOfSlides - 1;
+    } else {
+      currentSlide--;
+    }
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  }
+
+  function init() {
+    goToSlide(0);
+    createDots();
+
+    activateDot(0);
+  }
+  init();
+
+  buttonRight.addEventListener('click', nextSlide);
+  buttonLeft.addEventListener('click', prevSlide);
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') prevSlide();
+    event.key === 'ArrowRight' && nextSlide();
+  });
+
+  dotContainer.addEventListener('click', event => {
+    if (event.target.classList.contains('dots__dot')) {
+      const { slide } = event.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
+}
+
+slider();
