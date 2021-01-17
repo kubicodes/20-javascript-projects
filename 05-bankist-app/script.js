@@ -224,7 +224,10 @@ function slider() {
 
   function goToSlide(slide) {
     slides.forEach(
-      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+      (currSlide, currentIndex) =>
+        (currSlide.style.transform = `translateX(${
+          100 * (currentIndex - slide)
+        }%)`)
     );
   }
 
